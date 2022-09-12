@@ -40,11 +40,17 @@ const rollDice = (rolled) => {
 rollDice(rolled);
 
 //3. Loops
-// let rolled2 = Math.ceil(Math.random() * 6);
-// while (rolled2 <= 3) {
-//   console.log(`The loop ran ${rolled2}time(s).`);
-// }
-
+//I couldn't figure out how to keep generating a random number
+function rollDice2() {
+  return rolled;
+}
+for (let i = 1; i < 10; i++) {
+  rollDice2();
+  console.log(rolled, i);
+  if (rolled > 3) {
+    break;
+  }
+}
 //4. Loops
 let num2 = Math.floor(Math.random() * 10);
 let fact = 1;
@@ -69,7 +75,6 @@ for (let col = 0; col < 8; col++) {
       board += "#";
     } else board += " ";
   }
-
-  // board += "\n";
+  board += "\n";
 }
 console.log(board);
