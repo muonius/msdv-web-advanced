@@ -40,17 +40,21 @@ const rollDice = (rolled) => {
 rollDice(rolled);
 
 //3. Loops
-//I couldn't figure out how to keep generating a random number
-function rollDice2() {
-  return rolled;
-}
-for (let i = 1; i < 10; i++) {
-  rollDice2();
-  console.log(rolled, i);
+//use a true/false check
+let target = true;
+let count = 0;
+while (target) {
+  count++;
+  let rolled = Math.ceil(Math.random() * 6);
+  console.log("rolled " + rolled);
   if (rolled > 3) {
-    break;
+    console.log("stop rolling, you rolled a ", rolled);
+    target = false;
+  } else {
+    console.log("roll again");
   }
 }
+
 //4. Loops
 let num2 = Math.floor(Math.random() * 10);
 let fact = 1;
@@ -59,6 +63,17 @@ for (let i = num2; i > 0; i--) {
 }
 console.log(`${num2}'s factorial is ${fact}`);
 
+// using recursive
+let num3 = 10;
+function fact2(num3) {
+  if (num3 > 0) {
+    return num3 * fact2(num3 - 1);
+  } else {
+    return 1;
+  }
+}
+console.log("factorial of " + num3 + " is: ", fact2(5));
+
 //5. Loops
 let pound = "";
 for (let i = 0; i < 4; i++) {
@@ -66,8 +81,14 @@ for (let i = 0; i < 4; i++) {
   console.log(pound);
 }
 
-//6. Loops and Conditions
+let number = 1;
+while (number <= 10) {
+  let offset = 10 - number;
+  console.log(" ".repeat(offset) + "#".repeat(number));
+  number++;
+}
 
+//6. Loops and Conditions
 let board = "";
 for (let col = 0; col < 8; col++) {
   for (let row = 0; row < 8; row++) {
