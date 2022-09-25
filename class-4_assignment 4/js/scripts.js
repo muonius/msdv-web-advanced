@@ -10,7 +10,9 @@ let result = ai.checkAnswer(question);
 
 const ai = {
   stored: [
+    { question: "hello", answer: "hello" },
     { question: "how are you", answer: "getting better" },
+    { question: "how's your day", answer: "alright" },
     { question: "what is your name", answer: "HAL" },
     {
       question: "why are you here",
@@ -22,25 +24,43 @@ const ai = {
     },
     {
       question: "are you happy",
-      answer: "as much as I can",
+      answer: "as much as I can be",
+    },
+    {
+      question: "what month is this month",
+      answer: "september",
+    },
+    {
+      question: "can i help you with anything",
+      answer: "improve the homework",
+    },
+
+    {
+      question: "what class is this class",
+      answer: "web advanced",
     },
   ],
-  checkAnswer: function (input) {
-    let replaced = input.toLowerCase().split(" ");
-    replaced = replaced.map((d) => d.replace(/[^a-z0-9]/gi, ""));
-    const output = this.stored;
-    output.forEach((o) => {
-      o.count = 0;
-      for (let r of replaced) {
-        if (o.question.includes(r)) {
-          o.count++;
+  checkAnswer: function (input = "") {
+    if (input.replace(/[^a-z0-9]/gi, "") === "") alert("type something");
+    else {
+      let replaced = input.toLowerCase().split(" ");
+      replaced = replaced.map((d) => d.replace(/[^a-z0-9]/gi, ""));
+      const output = this.stored;
+      let map = [];
+      output.forEach((o) => {
+        let count = 0;
+        for (let r of replaced) {
+          if (o.question.includes(r)) {
+            count++;
+          }
         }
-      }
-      let i = output.indexOf(Math.max(...output[i].count));
-
-      console.log(i);
-    });
+        map.push(count);
+      });
+      let i = map.indexOf(Math.max(...map));
+      console.log(output[i].answer);
+    }
   },
 };
 
-ai.checkAnswer("How are you today?");
+let ans = prompt("Ask away");
+ai.checkAnswer(ans);
