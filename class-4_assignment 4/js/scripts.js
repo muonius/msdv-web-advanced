@@ -34,7 +34,10 @@ const ai = {
       question: "can i help you with anything",
       answer: "improve the homework",
     },
-
+    {
+      question: "when is your birthday",
+      answer: "september",
+    },
     {
       question: "what class is this class",
       answer: "web advanced",
