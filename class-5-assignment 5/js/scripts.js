@@ -21,7 +21,6 @@ const button = document.createElement("button");
 button.innerHTML = "click me";
 section.appendChild(button);
 
-let counter = 1;
 button.addEventListener("click", showImage);
 
 //I couldn't get the image to change again
