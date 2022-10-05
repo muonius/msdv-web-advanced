@@ -25,8 +25,9 @@ button.addEventListener("click", showImage);
 
 //I couldn't get the image to change again
 function showImage() {
-  document.body.style.backgroundImage =
-    "url('https://source.unsplash.com/random')";
+  let randomNum = Math.floor(Math.random() * 100);
+  document.body.style.background = "none";
+  document.body.style.backgroundImage = `url('https://source.unsplash.com/random?sid=${randomNum}')`;
   document.body.style.backgroundRepeat = "no-repeat";
   document.body.style.backgroundSize = "cover";
 }
