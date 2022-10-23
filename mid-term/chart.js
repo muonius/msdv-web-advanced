@@ -302,22 +302,22 @@ async function drawChart() {
       tooltip.style("opacity", 0);
     }
   }
+
   // fetch data from API
   let paragraph = document.querySelector(".paragraph");
-  //multiple attribute helper function
-  function setAttributes(el, attrs) {
-    for (var key in attrs) {
-      el.setAttribute(key, attrs[key]);
-    }
-  }
 
+  //fetch Goal Description
   function getUserData(code) {
     let url = `https://unstats.un.org/sdgapi/v1/sdg/Goal/${code}/Target/List?includechildren=true`;
     fetch(url)
       .then((res) => res.json())
       .then(function (resp) {
+        //remove existing content
         paragraph.innerHTML = "";
+
+        //create HTML content
         let description = document.createElement("p");
+
         let img = document.createElement("img");
         setAttributes(img, {
           src: `./assets/${code}.svg`,
@@ -326,14 +326,38 @@ async function drawChart() {
           class: "paraimg",
         });
         description.setAttribute("id", "description");
+
         let goal = resp[0].description;
-        description.innerHTML = goal;
+
+        function splitFormat(str) {
+          const index = goal.indexOf(" ", str.indexOf(" ") + 1);
+          let firstChunk = str.substr(0, index);
+          let secondChunk = str.substr(index + 1);
+          let span1 = document.createElement("span");
+          span1.setAttribute("id", "span1");
+          let span2 = document.createElement("span");
+          span2.setAttribute("id", "span2");
+          span1.innerHTML = firstChunk;
+          span2.innerHTML = " " + secondChunk;
+          description.appendChild(span1);
+          description.appendChild(span2);
+        }
+
+        splitFormat(goal);
         paragraph.appendChild(img);
         paragraph.appendChild(description);
       })
       .catch(function (resp) {
         document.getElementById("Output").innerHTML = "There was an error";
       });
+
+    //helper function: set multiple attributes
+    function setAttributes(el, attrs) {
+      for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+      }
+    }
+    //helper function: split "GOAL for different formatting"
   }
 
   d3.selectAll(".swiper-slide").on("click", function (e) {
