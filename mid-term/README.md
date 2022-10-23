@@ -4,7 +4,7 @@ For midterms, you will use AJAX handlers to create an interactive webpage. You w
 
 You will then format the returned data (which will probably be in JSON format) and present the result or results in the DOM in a manner of your choice (diagrams, dataviz, animation etc.).
 
-### Process Update
+### Assignment Process
 
 My assignment is fetching UN SDG(Sustainable Development Goals) API data and combining it with my CSV data to create a data visualization of different regions' SDG scores per goal.
 
