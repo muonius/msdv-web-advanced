@@ -6,12 +6,12 @@ You will then format the returned data (which will probably be in JSON format) a
 
 ### Process Update
 
-My assignment is fetching UN SDG(Sustainable Development Goals) API data and combining it with my CSV data to create a data visualization of different regions' SDG scores per GOAL.
+My assignment is fetching UN SDG(Sustainable Development Goals) API data and combining it with my CSV data to create a data visualization of different regions' SDG scores per goal.
 
 The portion related to API fetching is as follows:
 
 - Connect to UN SDG API to fetch description of goals
-- Split description into two parts and create "<span>" for each part to be formatted differently
+- Split description into two parts and create `<span>` for each part to be formatted differently
 - Set up event listener so when a user clicks on the image of a goal, goal specific content will be updated
 
 [Project Link](https://muons.com/msdv-web-advanced/mid-term/)
