@@ -302,21 +302,48 @@ async function drawChart() {
       tooltip.style("opacity", 0);
     }
   }
+  // fetch data from API
+  let paragraph = document.querySelector(".paragraph");
+  //multiple attribute helper function
+  function setAttributes(el, attrs) {
+    for (var key in attrs) {
+      el.setAttribute(key, attrs[key]);
+    }
+  }
+
+  function getUserData(code) {
+    let url = `https://unstats.un.org/sdgapi/v1/sdg/Goal/${code}/Target/List?includechildren=true`;
+    fetch(url)
+      .then((res) => res.json())
+      .then(function (resp) {
+        paragraph.innerHTML = "";
+        let description = document.createElement("p");
+        let img = document.createElement("img");
+        setAttributes(img, {
+          src: `./assets/${code}.svg`,
+          width: "400px",
+          height: "auto",
+          class: "paraimg",
+        });
+        description.setAttribute("id", "description");
+        let goal = resp[0].description;
+        description.innerHTML = goal;
+        paragraph.appendChild(img);
+        paragraph.appendChild(description);
+      })
+      .catch(function (resp) {
+        document.getElementById("Output").innerHTML = "There was an error";
+      });
+  }
 
   d3.selectAll(".swiper-slide").on("click", function (e) {
     console.log(this.id);
+    console.log(this.dataset.code);
     e.preventDefault();
     drawArc(this.id);
+    getUserData(this.dataset.code);
   });
 
   drawArc("1. No Poverty");
-  // const chartLabel = bounds.append("g");
-  // chartLabel
-
-  //in svg you can't use z-index
-
-  // 6. Draw peripherals, part II
-
-  // 7. Set up interactions
 }
 drawChart();
