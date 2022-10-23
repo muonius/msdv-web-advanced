@@ -1,39 +1,17 @@
-### Assignment
+### Connect with an API using introduced patterns and approaches
 
-After the second review of your project, incorporate the feedback and refine your design.
+For midterms, you will use AJAX handlers to create an interactive webpage. You will first create a way to accept user data (through forms, mouse actions or any other forms) and then capture an event action (form submit, button click , key press etc.) to collect that user data and use AJAX to send that data to an API of your choice.
 
-- Re-evaluate your visual design choices and refine all aspects of it in detail (pixel perfect design): Visualization method, composition, color, contrast, typography, hierarchy
-- Fix outstanding bugs and missing features in the code version of your project
-- Upload the working version of your project to your github.io page
-- Create a set of 2-5 screenshots that work in a slide presentation (16:9, 1920x1080px)
-- Create a presentation about this project that describes the project
-  - Initial motivation and question (1-3 slides, 1-2min)
-  - Process (only if helpful, necessary)
-  - Visualization (Still and in code)
-  - Next steps, learnings and open questions
+You will then format the returned data (which will probably be in JSON format) and present the result or results in the DOM in a manner of your choice (diagrams, dataviz, animation etc.).
 
 ### Process Update
 
-I took the feedback of my classmates and redesigned the dashboard. I eliminated all additional colors and will stick with the current SDG color palette which is already quite colorful.
+My assignment is fetching UN SDG(Sustainable Development Goals) API data and combining it with my CSV data to create a data visualization of different regions' SDG scores per GOAL.
 
-I also completed the below features as planned. Click [here](https://muons.com/msdv-major-studio-1/01_quantitative_project/) for the live project.
+The portion related to API fetching is as follows:
 
-- Score grid rating
-- Body text
-- Hover over tooltip
-- Generalize the code so users can toggle different goal metric
-- Change the toggle to a horizontal scroll
-- Highlight goal selected and mute unselected ones
-
-### Presentation Screenshots
-
-<img src="../week05_quan_final/1.png" width="900" alt="Slide 1">
-<img src="../week05_quan_final/2.png" width="900" alt="Slide 2">
-<img src="../week05_quan_final/3.png" width="900" alt="Slide 3">
-<img src="../week05_quan_final/4.png" width="900" alt="Slide 4">
-<img src="../week05_quan_final/5.png" width="900" alt="Slide 5">
-<img src="../week05_quan_final/6.png" width="900" alt="Slide 6">
-<img src="../week05_quan_final/7.png" width="900" alt="Slide 7">
-<img src="../week05_quan_final/8.png" width="900" alt="Slide 8">
+- Connect to UN SDG API to fetch description of goals
+- Split description into two parts and create "<span>" for each part to be formatted differently
+- Set up event listener so when a user clicks on the image of a goal, goal specific content will be updated
 
 [Project Link](https://muons.com/msdv-web-advanced/mid-term/)
