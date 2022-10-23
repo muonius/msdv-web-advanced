@@ -1,6 +1,5 @@
 async function drawChart() {
-  // 1. Access data
-
+  // 1. Access csv data
   let dataset = await d3.csv("./data/score.csv");
   //remove world from region
   const dataregion = dataset.filter((d) => d["Region"] != "World");
@@ -23,7 +22,6 @@ async function drawChart() {
   // console.log(sumdata);
 
   // 2. Create chart dimensions
-
   const width = 460;
   let dimensions = {
     width: width,
@@ -45,13 +43,12 @@ async function drawChart() {
   innerRadius = 80;
   outerRadius = dimensions.boundedWidth / 2;
 
-  const getCoordinatesForAngle = (angle, offset = 1) => [
-    Math.cos(angle - Math.PI / 2) * dimensions.boundedRadius * offset,
-    Math.sin(angle - Math.PI / 2) * dimensions.boundedRadius * offset,
-  ];
+  // const getCoordinatesForAngle = (angle, offset = 1) => [
+  //   Math.cos(angle - Math.PI / 2) * dimensions.boundedRadius * offset,
+  //   Math.sin(angle - Math.PI / 2) * dimensions.boundedRadius * offset,
+  // ];
 
   // 3. Draw canvas
-
   const wrapper = d3
     .select("#wrapper")
     .append("svg")
@@ -68,7 +65,6 @@ async function drawChart() {
     );
 
   // 4. Create scales
-
   const regionScale = d3
     .scaleBand()
     .domain(region)
@@ -98,7 +94,6 @@ async function drawChart() {
     ]);
 
   // 6. Draw peripherals
-
   const peripherals = bounds.append("g");
 
   const scoreTicks = radiusScale.ticks(4);
@@ -255,7 +250,7 @@ async function drawChart() {
       .attr("class", "tick-label")
       .style("font-size", "1em");
 
-    //6. Draw Interaction
+    //7. Draw Interaction
     const tooltip = d3.select("#tooltip");
 
     barChart.on("mouseover", onMouseEnter).on("mouseleave", onMouseLeave);
@@ -303,7 +298,7 @@ async function drawChart() {
     }
   }
 
-  // fetch data from API
+  // 8. Fetch data from API
   let paragraph = document.querySelector(".paragraph");
 
   //fetch Goal Description
@@ -315,9 +310,10 @@ async function drawChart() {
         //remove existing content
         paragraph.innerHTML = "";
 
-        //create HTML content
+        //create p element
         let description = document.createElement("p");
-
+        description.setAttribute("id", "description");
+        //create image element
         let img = document.createElement("img");
         setAttributes(img, {
           src: `./assets/${code}.svg`,
@@ -325,10 +321,10 @@ async function drawChart() {
           height: "auto",
           class: "paraimg",
         });
-        description.setAttribute("id", "description");
-
+        //fetch goal description
         let goal = resp[0].description;
 
+        //helper function: split goals out for different formatting
         function splitFormat(str) {
           const index = goal.indexOf(" ", str.indexOf(" ") + 1);
           let firstChunk = str.substr(0, index);
@@ -344,6 +340,7 @@ async function drawChart() {
         }
 
         splitFormat(goal);
+        //append elements
         paragraph.appendChild(img);
         paragraph.appendChild(description);
       })
@@ -357,9 +354,8 @@ async function drawChart() {
         el.setAttribute(key, attrs[key]);
       }
     }
-    //helper function: split "GOAL for different formatting"
   }
-
+  //9. Button Interaction
   d3.selectAll(".swiper-slide").on("click", function (e) {
     console.log(this.id);
     console.log(this.dataset.code);
@@ -367,7 +363,8 @@ async function drawChart() {
     drawArc(this.id);
     getUserData(this.dataset.code);
   });
-
+  // 10.
   drawArc("1. No Poverty");
+  getUserData(1);
 }
 drawChart();
